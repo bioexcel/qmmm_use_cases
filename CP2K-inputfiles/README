@@ -1,0 +1,28 @@
+
+#### File CP2K-5.1_archfile contains the compilation details ######3
+
+
+CP2K test calculations for GFP-wt monomer
+
+#### The GFP system has been minimzed and equilibrated and the qmmm-*.inp files should run the QM/MM calculations #####
+####
+SCALE QM SUBSYSTEM (MM: 28264 atoms)
+test-1:	20 atoms (SYG)
+test-2: 32 atoms (SYG + ARG96)
+test-3: 53 atoms (SYG + ARG96 + HID148 + GLU222)
+test-4: 77 atoms (SYG + ARG96 + HID148 + GLU222 + SER205 + GLN94 + THR203 )
+
+
+####### Each GFP system was started from the same initial structure but with a differnt BOX size ######
+####### Each test run requires a separate EM, NVT, NPT runs before the QM/MM step. The equilibrated ### 
+#######  box size after NPT equilibration can be picked up from the file NP-1.cell and should be ######
+####### added to the qmmm input file               #####
+SCALE MM 
+test-1: 30928 atoms 
+test-2: 51034 atoms 
+test-3: 112498 atoms
+test-4: 297610 atoms 
+
+
+
+
