@@ -1,0 +1,53 @@
+# CP2K ARCH file for the ARCHER system building the PSMP (MPI + OpenMP) version
+# Compiler: 	 gcc 6.3.0
+# FFTW:		 cray-fftw/3.3.6.3
+# MPI library:	 Cray 
+# BLAS, LAPACK, ScaLAPACK etc all from Cray Libsci
+# Libxc:	 Version 4.2.3
+# Libint:	 Version 1.1.4
+# Libxsmm: 	 Release 1.10
+# ELPA:		 2016.05.004
+# Plumed:	 2.3.6 built with cray-fftw/3.3.6.3
+# Libgrid:	 Build on ARCHER with 6,7,3 options	
+
+CC       = cc
+CPP      =
+FC       = ftn -fopenmp -ffree-form 
+LD       = ftn -fopenmp
+AR       = ar -r
+DFLAGS   = -D__FFTW3 -D__LIBINT \
+           -D__parallel -D__SCALAPACK -D__HAS_NO_SHARED_GLIBC \
+           -D__STATM_RESIDENT -D__LIBXC -D__LIBXSMM -D__HAS_LIBGRID \
+           -D__MPI_VERSION=3 -D__MAX_CONTR=4 \
+	   -D__ELPA=201605 \
+	   -D__PLUMED2
+
+DATA_DIR = /work/y07/y07/cp2k/6.1.18464/data
+LIB_LOC_FR  = /home/d118/d118/fionabio/BioExcel2/libs
+PLUMED_VERSION = 2.3.6
+LIB_PLUMED = /work/d118/d118/fionabio/BioExcel2/libs/plumed_crayfftw/${PLUMED_VERSION}
+LIBXC_VERSION = 4.2.3
+CPPFLAGS = -traditional -C $(DFLAGS) -P
+CFLAGS   = $(DFLAGS)
+FCFLAGS  = $(DFLAGS) \
+	   -I$(LIB_LOC_FR)/libxsmm_release/include \
+	   -I$(LIB_LOC_FR)/libxc/${LIBXC_VERSION}/include/ \
+	   -I$(LIB_LOC_FR)/elpa/include/elpa_openmp-2016.05.004/modules/ \
+	   -I$(LIB_LOC_FR)/elpa/include/elpa_openmp-2016.05.004/elpa/ \
+	   -O3 -ffast-math -funroll-loops -fno-tree-vectorize \
+	   -fno-omit-frame-pointer -g -march=core-avx-i \
+	   -Waliasing -Wampersand -Wc-binding-type -Wconversion \
+	   -Wintrinsic-shadow -Wintrinsics-std -Wline-truncation \
+	   -Wno-tabs -Wrealloc-lhs-all -Wtarget-lifetime -Wunderflow \
+	   -Wunused-but-set-variable -Wunused-variable -std=f2003
+LDFLAGS  = $(FCFLAGS)
+LIBS     = -L$(LIB_LOC_FR)/libint/lib -lderiv -lint -lstdc++ \
+           -L$(LIB_LOC_FR)/libgrid -lgrid \
+           -L$(LIB_LOC_FR)/libxsmm_release/lib -lxsmmf -lxsmm -lxsmmext \
+           -L$(LIB_LOC_FR)/libxc/${LIBXC_VERSION}/lib -lxcf03 -lxcf90 -lxc \
+           -L$(LIB_LOC_FR)/elpa/lib -lelpa_openmp \
+           -lfftw3 -lfftw3_threads -lz -ldl 
+
+include $(LIB_PLUMED)/lib/plumed/src/lib/Plumed.inc
+EXTERNAL_OBJECTS=$(PLUMED_STATIC_DEPENDENCIES)
+
