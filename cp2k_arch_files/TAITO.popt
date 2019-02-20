@@ -1,0 +1,37 @@
+
+include /appl/chem/cp2k/5.1/plumed-2.4.1_no_openmp/src/lib/Plumed.inc
+EXTERNAL_OBJECTS=$(PLUMED_STATIC_DEPENDENCIES)
+
+
+CC       = gcc
+CPP      = #cpp -traditional-cpp
+FC       = mpif90
+LD       = mpif90
+AR       = ar -r
+
+FFTW_INC = $(FFTW_ROOT)/include
+LIBXC_INC = $(LIBXCDIR)/include
+LIBINT_INC = /appl/chem/cp2k/libint-1.1.4/include
+LIBXSMM_INC = /appl/chem/cp2k/libxsmm-1.5.1-snb/include
+
+FFTW_LIB = $(FFTW_ROOT)/lib
+LIBXC_LIB = $(LIBXCDIR)/lib
+LIBINT_LIB = /appl/chem/cp2k/libint-1.1.4/lib
+LIBXSMM_LIB = /appl/chem/cp2k/libxsmm-1.5.1-snb/lib
+
+ELPA_DIR= /appl/chem/cp2k/5.1/elpa-2016.05.004
+
+
+
+DFLAGS   = -D__GFORTRAN -D__FFTW3 -D__parallel -D__SCALAPACK -D__LIBINT -D__LIBXC -D__LIBXSMM -D__PLUMED2 -D__ELPA=201605 -D__MKL -D__BLACS
+FCFLAGS  = $(DFLAGS) -O3 -ffree-form -march=sandybridge -ffast-math -funroll-loops -I$(FFTW_INC) -I$(LIBINT_INC) -I$(LIBXC_INC) -I$(LIBXSMM_INC) -I$(ELPA_DIR)/modules -I$(ELPA_DIR)/elpa
+
+CPPFLAGS = -C   $(DFLAGS)
+
+
+CFLAGS   = $(FCFLAGS)
+LDFLAGS  = $(FCFLAGS) -Wl,-Map,load.map -dynamic -L$(ELPA_DIR)/.libs -L$(ELPA_DIR)
+LIBS     =  -L$(FFTW_LIB) -L$(LIBINT_LIB) -L$(LIBXSMM_LIB) -lxsmm -lxsmmext -lxsmmf -lxsmmext -lxsmmgen -L$(LIBXC_LIB) -lxcf90 -lxc -lfftw3 -lderiv -lint  -lstdc++ -L$(MKLROOT)/lib/intel64 -lmkl_scalapack_lp64 -lmkl_gf_lp64 -lmkl_core -lmkl_sequential -lmkl_blacs_intelmpi_lp64  -lpthread -lm -lelpa -lgsl -lz
+
+OBJECTS_ARCHITECTURE = machine_gfortran.o
+
