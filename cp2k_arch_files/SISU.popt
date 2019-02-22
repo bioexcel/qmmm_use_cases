@@ -1,0 +1,36 @@
+# Program environments:
+# - module load PrgEnv-gnu ; module load cray-libsci ; module load fftw 
+# module load craype-hugepages2M
+
+include /appl/chem/plumed/2.1.2/lib/plumed/src/lib/Plumed.inc
+EXTERNAL_OBJECTS=$(PLUMED_STATIC_DEPENDENCIES)
+
+CC       = cc
+CPP      =
+FC       = ftn
+LD       = ftn
+AR       = ar -r
+LIBINT_LIB=/appl/chem/cp2k/libint-1.1.5/lib
+LIBINT_INC=/appl/chem/cp2k/libint-1.1.5/include
+LIBXC_LIB=/appl/nano/libxc/3.0.0/lib
+LIBXC_INC=/appl/nano/libxc/3.0.0/include
+LIBXSMM_LIB=/appl/chem/cp2k/libxsmm-1.5.1/lib
+LIBXSMM_INC=/appl/chem/cp2k/libxsmm-1.5.1/include
+LIBELPA_LIB=/appl/chem/cp2k/elpa-2016.05.004/lib
+LIBELPA_INC=/appl/chem/cp2k/elpa-2016.05.004/include/elpa-2016.05.004/modules
+LIBELPA_INC2=/appl/chem/cp2k/elpa-2016.05.004/include/elpa-2016.05.004/elpa/
+CPPFLAGS =
+DFLAGS   = -D__BLACS -D__GFORTRAN -D__FFTW3 -D__parallel -D__SCALAPACK -D__LIBXSMM \
+         -D__HAS_NO_SHARED_GLIBC -D__LIBINT -D__LIBXC -D__ELPA=201605 -D__PLUMED2
+#DFLAGS   = -D__FFTW3 -D__parallel -D__SCALAPACK -D__LIBXSMM \
+#        -D__HAS_NO_SHARED_GLIBC -D__LIBINT -D__LIBXC2
+
+CFLAGS   = $(DFLAGS)
+FCFLAGS  = $(DFLAGS) -O3 -march=haswell -mtune=haswell -mavx2 -funroll-loops -ffast-math -ftree-vectorize \
+           -ffree-form -ffree-line-length-512 -I$(LIBINT_INC) -I$(LIBXC_INC) \
+           -I$(LIBXSMM_INC) -I$(LIBELPA_INC) -I$(LIBELPA_INC2)
+LDFLAGS  =  $(FCFLAGS)
+LIBS     = -L$(LIBINT_LIB) -L$(LIBXC_LIB) -L$(LIBXSMM_LIB) -L$(LIBELPA_LIB) \
+         -lxcf90 -lxc -lderiv -lint -lstdc++ -lfftw3 -lxsmm -lxsmmext \
+         -lxsmmgen -lxsmmf -lelpa -ldl  -lz
+
