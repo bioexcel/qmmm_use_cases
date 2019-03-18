@@ -1,1 +1,8 @@
 Some sample ARCH files for building CP2K on different systems. 
+
+Copy the file appropriate to your system to the cp2k/arch directory 
+
+From the cp2k/makefiles/ directory run the following command e.g. to build the PSMP (MPI + OpenMP) version on ARCHER you would use: 
+
+make -j 8 ARCH=ARCHER VERSION=psmp
+
