@@ -1,0 +1,788 @@
+CrayPat/X:  Version 6.4.6 Revision 7d0d87c  02/20/17 09:52:37
+
+Number of PEs (MPI ranks):   32
+                           
+Numbers of PEs per Node:      4  PEs on each of  8  Nodes
+                           
+Numbers of Threads per PE:    1
+                           
+Number of Cores per Socket:  12
+
+Execution start time:  Fri Mar 15 09:17:17 2019
+
+System name and speed:  eslogin003  2701 MHz (approx)
+
+Intel ivybridge CPU  Family:  6  Model: 62  Stepping:  4
+
+
+Current path to data file:
+  /work/d118/d118/fionabio/BioExcel2/cp2k_benchmarks/QMMM/QM/8_nodes/test-1/cp2k.psmp+samp+23753-965s.ap2  (RTS)
+
+
+Notes for table 1:
+
+  Table option:
+    -O samp_profile
+  Options implied by table option:
+    -d sa%@0.95,sa,imb_sa,imb_sa% -b gr,fu,pe=HIDE
+
+  Options for related tables:
+    -O samp_profile+src        -O profile_max         
+
+  The Total value for Samp is the sum of the Group values.
+  The Group value for Samp is the sum of the Function values.
+  The Function value for Samp is the avg of the PE values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only lines with Samp% > 0.95.
+    (To set thresholds to zero, specify:  -T)
+
+  Imbalance percentages are relative to a set of threads or PEs.
+  Other percentages at each level are of the Total for the program.
+    (For percentages relative to next level up, specify:
+      -s percent=r[elative])
+
+  To make the profile easier to interpret, some samples are attributed
+  to a caller that is either a user defined function, or a library
+  function called directly by a user defined function.  To disable this
+  adjustment, and show functions actually sampled, use the -P option.
+  
+  The following groups were pruned due to thresholding:
+    IO, HEAP, PTHREAD, OMP, MATH, STDIO, BLAS, BLACS, SCALAPACK, FFTW,
+    PBLAS, STRING
+  
+  Trace option suggestions have been generated into a separate file
+  from the data in the next table.  You can examine the file, edit it
+  if desired, and use it to reinstrument the program like this:
+  
+            pat_build -O craypat_qm_8_nodes_32_mpiprocs_1_threads_40_steps.apa
+
+Table 1:  Profile by Function
+
+  Samp% |      Samp |     Imb. |  Imb. | Group
+        |           |     Samp | Samp% |  Function
+        |           |          |       |   PE=HIDE
+       
+ 100.0% | 333,293.8 |       -- |    -- | Total
+|-----------------------------------------------------------------------------
+|  60.1% | 200,231.4 |       -- |    -- | USER
+||----------------------------------------------------------------------------
+||  12.3% |  41,001.8 |    385.2 |  1.0% | __pw_spline_utils_MOD_pw_nn_compose_r_no_pbc._omp_fn.0
+||   7.2% |  23,950.5 |  1,141.5 |  4.7% | __pw_methods_MOD_pw_integral_ab
+||   4.6% |  15,482.4 |    124.6 |  0.8% | __pw_methods_MOD_pw_gather_p._omp_fn.22
+||   4.3% |  14,231.6 |    296.4 |  2.1% | __pw_methods_MOD_pw_scatter_p._omp_fn.24
+||   4.0% |  13,271.8 |     82.2 |  0.6% | __qmmm_gpw_energy_MOD_qmmm_elec_with_gaussian_lr
+||   3.3% |  11,150.3 |     54.7 |  0.5% | __qmmm_gpw_forces_MOD_qmmm_force_with_gaussian_low
+||   2.5% |   8,465.9 |    513.1 |  5.9% | __fft_tools_MOD_x_to_yz._omp_fn.14
+||   2.1% |   7,122.4 |    162.6 |  2.3% | __fast_MOD_zero_c2._omp_fn.1
+||   2.0% |   6,682.2 |    232.8 |  3.5% | __kahan_sum_MOD_kahan_sum_d3
+||   1.8% |   6,049.3 |    299.7 |  4.9% | __fft_tools_MOD_yz_to_x._omp_fn.9
+||   1.7% |   5,571.0 |     38.0 |  0.7% | __pw_spline_utils_MOD_add_fine2coarse
+||   1.6% |   5,431.3 |    190.7 |  3.5% | __pw_methods_MOD_pw_zero
+||   1.6% |   5,205.2 |     35.8 |  0.7% | __pw_spline_utils_MOD_add_coarse2fine
+||   1.3% |   4,305.6 |    368.4 |  8.1% | __pw_methods_MOD_pw_axpy
+||============================================================================
+|  21.2% |  70,574.3 |       -- |    -- | ETC
+||----------------------------------------------------------------------------
+||   8.0% |  26,728.9 | 23,760.1 | 48.6% | apply
+||   6.5% |  21,646.2 | 37,126.8 | 65.2% | _int_malloc
+||   1.4% |   4,752.2 |  4,685.8 | 51.3% | apply_extra_iter
+||   1.1% |   3,610.7 | 53,853.3 | 96.7% | _gfortran_string_len_trim
+||============================================================================
+|  17.6% |  58,808.1 |       -- |    -- | MPI
+||----------------------------------------------------------------------------
+||  10.3% |  34,246.8 |  3,237.2 |  8.9% | mpi_alltoallv
+||   5.4% |  17,891.8 |  2,339.2 | 11.9% | MPI_ALLREDUCE
+||   1.0% |   3,424.9 |    406.1 | 10.9% | MPI_WAITANY
+||============================================================================
+|   1.0% |   3,418.7 |       -- |    -- | RT
+||----------------------------------------------------------------------------
+||   1.0% |   3,413.6 |    985.4 | 23.1% | munmap
+|=============================================================================
+
+Notes for table 2:
+
+  Table option:
+    -O profile_max
+  Options implied by table option:
+    -d ti%@0.95,ti,imb_ti,imb_ti% -b fu,pe=[max,min] -s aggr_fu=max -s
+    aggr_pe=max -s aggr_th=max -s total=HIDE
+
+  Options for related tables:
+    -O profile_pe_th           -O profile_pe.th       
+    -O profile_th_pe           -O profile+src         
+    -O load_balance            -O callers             
+    -O callers+src             -O calltree            
+    -O calltree+src        
+
+  The Function value for Samp is the max of the PE values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only lines with Samp% > 0.95.
+    (To set thresholds to zero, specify:  -T)
+  This table shows only the maximum, minimum PE entries, sorted by
+    Samp.
+
+  Imbalance percentages are relative to a set of threads or PEs.
+  Other percentages at each level are of the Total for the program.
+    (For percentages relative to next level up, specify:
+      -s percent=r[elative])
+
+  To make the profile easier to interpret, some samples are attributed
+  to a caller that is either a user defined function, or a library
+  function called directly by a user defined function.  To disable this
+  adjustment, and show functions actually sampled, use the -P option.
+
+Table 2:  Profile of maximum function times (limited entries shown)
+
+  Samp% |     Samp |     Imb. |   Imb. | Function
+        |          |     Samp |  Samp% |  PE=[max,min]
+|-----------------------------------------------------------------------------
+| 100.0% | 58,773.0 | 37,126.8 |  65.2% | _int_malloc
+||----------------------------------------------------------------------------
+|| 100.0% | 58,773.0 |       -- |     -- | pe.14
+||   0.1% |     77.0 |       -- |     -- | pe.28
+||============================================================================
+|  97.8% | 57,464.0 | 53,853.3 |  96.7% | _gfortran_string_len_trim
+||----------------------------------------------------------------------------
+||  97.8% | 57,464.0 |       -- |     -- | pe.18
+||   0.1% |     55.0 |       -- |     -- | pe.12
+||============================================================================
+|  95.1% | 55,869.0 | 54,119.6 | 100.0% | _gfortran_compare_string
+||----------------------------------------------------------------------------
+||  95.1% | 55,869.0 |       -- |     -- | pe.0
+||   0.0% |      1.0 |       -- |     -- | pe.24
+||============================================================================
+|  85.9% | 50,489.0 | 23,760.1 |  48.6% | apply
+||----------------------------------------------------------------------------
+||  85.9% | 50,489.0 |       -- |     -- | pe.11
+||   2.7% |  1,559.0 |       -- |     -- | pe.25
+||============================================================================
+|  70.4% | 41,387.0 |    385.2 |   1.0% | __pw_spline_utils_MOD_pw_nn_compose_r_no_pbc._omp_fn.0
+||----------------------------------------------------------------------------
+||  70.4% | 41,387.0 |       -- |     -- | pe.6
+||  69.4% | 40,763.0 |       -- |     -- | pe.5
+||============================================================================
+|  63.8% | 37,484.0 |  3,237.2 |   8.9% | mpi_alltoallv
+||----------------------------------------------------------------------------
+||  63.8% | 37,484.0 |       -- |     -- | pe.29
+||  51.1% | 30,024.0 |       -- |     -- | pe.14
+||============================================================================
+|  42.7% | 25,092.0 |  1,141.5 |   4.7% | __pw_methods_MOD_pw_integral_ab
+||----------------------------------------------------------------------------
+||  42.7% | 25,092.0 |       -- |     -- | pe.27
+||  39.2% | 23,014.0 |       -- |     -- | pe.24
+||============================================================================
+|  34.4% | 20,231.0 |  2,339.2 |  11.9% | MPI_ALLREDUCE
+||----------------------------------------------------------------------------
+||  34.4% | 20,231.0 |       -- |     -- | pe.29
+||  26.0% | 15,264.0 |       -- |     -- | pe.14
+||============================================================================
+|  26.6% | 15,607.0 |    124.6 |   0.8% | __pw_methods_MOD_pw_gather_p._omp_fn.22
+||----------------------------------------------------------------------------
+||  26.6% | 15,607.0 |       -- |     -- | pe.14
+||  26.0% | 15,285.0 |       -- |     -- | pe.0
+||============================================================================
+|  24.7% | 14,528.0 |    296.4 |   2.1% | __pw_methods_MOD_pw_scatter_p._omp_fn.24
+||----------------------------------------------------------------------------
+||  24.7% | 14,528.0 |       -- |     -- | pe.14
+||  23.7% | 13,955.0 |       -- |     -- | pe.0
+||============================================================================
+|  22.7% | 13,354.0 |     82.2 |   0.6% | __qmmm_gpw_energy_MOD_qmmm_elec_with_gaussian_lr
+||----------------------------------------------------------------------------
+||  22.7% | 13,354.0 |       -- |     -- | pe.6
+||  22.5% | 13,219.0 |       -- |     -- | pe.29
+||============================================================================
+|  19.1% | 11,205.0 |     54.7 |   0.5% | __qmmm_gpw_forces_MOD_qmmm_force_with_gaussian_low
+||----------------------------------------------------------------------------
+||  19.1% | 11,205.0 |       -- |     -- | pe.6
+||  18.9% | 11,114.0 |       -- |     -- | pe.25
+||============================================================================
+|  16.1% |  9,438.0 |  4,685.8 |  51.3% | apply_extra_iter
+||----------------------------------------------------------------------------
+||  16.1% |  9,438.0 |       -- |     -- | pe.2
+||   1.6% |    953.0 |       -- |     -- | pe.26
+||============================================================================
+|  15.3% |  8,979.0 |    513.1 |   5.9% | __fft_tools_MOD_x_to_yz._omp_fn.14
+||----------------------------------------------------------------------------
+||  15.3% |  8,979.0 |       -- |     -- | pe.6
+||  13.5% |  7,934.0 |       -- |     -- | pe.29
+||============================================================================
+|  12.4% |  7,285.0 |    162.6 |   2.3% | __fast_MOD_zero_c2._omp_fn.1
+||----------------------------------------------------------------------------
+||  12.4% |  7,285.0 |       -- |     -- | pe.7
+||  11.5% |  6,771.0 |       -- |     -- | pe.16
+||============================================================================
+|  11.8% |  6,915.0 |    232.8 |   3.5% | __kahan_sum_MOD_kahan_sum_d3
+||----------------------------------------------------------------------------
+||  11.8% |  6,915.0 |       -- |     -- | pe.17
+||  11.0% |  6,474.0 |       -- |     -- | pe.29
+||============================================================================
+|  10.8% |  6,349.0 |    299.7 |   4.9% | __fft_tools_MOD_yz_to_x._omp_fn.9
+||----------------------------------------------------------------------------
+||  10.8% |  6,349.0 |       -- |     -- | pe.22
+||   9.9% |  5,805.0 |       -- |     -- | pe.29
+||============================================================================
+|   9.6% |  5,622.0 |    190.7 |   3.5% | __pw_methods_MOD_pw_zero
+||----------------------------------------------------------------------------
+||   9.6% |  5,622.0 |       -- |     -- | pe.7
+||   8.6% |  5,036.0 |       -- |     -- | pe.26
+||============================================================================
+|   9.5% |  5,609.0 |     38.0 |   0.7% | __pw_spline_utils_MOD_add_fine2coarse
+||----------------------------------------------------------------------------
+||   9.5% |  5,609.0 |       -- |     -- | pe.27
+||   9.4% |  5,521.0 |       -- |     -- | pe.28
+||============================================================================
+|   8.9% |  5,241.0 |     35.8 |   0.7% | __pw_spline_utils_MOD_add_coarse2fine
+||----------------------------------------------------------------------------
+||   8.9% |  5,241.0 |       -- |     -- | pe.6
+||   8.8% |  5,175.0 |       -- |     -- | pe.8
+||============================================================================
+|   8.5% |  5,022.0 |  1,863.0 |  38.3% | __fast_MOD_copy_rc._omp_fn.2
+||----------------------------------------------------------------------------
+||   8.5% |  5,022.0 |       -- |     -- | pe.10
+||   2.5% |  1,441.0 |       -- |     -- | pe.17
+||============================================================================
+|   8.0% |  4,674.0 |    368.4 |   8.1% | __pw_methods_MOD_pw_axpy
+||----------------------------------------------------------------------------
+||   8.0% |  4,674.0 |       -- |     -- | pe.27
+||   6.9% |  4,077.0 |       -- |     -- | pe.11
+||============================================================================
+|   7.5% |  4,399.0 |    985.4 |  23.1% | munmap
+||----------------------------------------------------------------------------
+||   7.5% |  4,399.0 |       -- |     -- | pe.4
+||   4.1% |  2,394.0 |       -- |     -- | pe.7
+||============================================================================
+|   6.5% |  3,831.0 |    406.1 |  10.9% | MPI_WAITANY
+||----------------------------------------------------------------------------
+||   6.5% |  3,831.0 |       -- |     -- | pe.24
+||   4.8% |  2,838.0 |       -- |     -- | pe.0
+||============================================================================
+|   6.5% |  3,796.0 |  2,049.7 |  55.7% | GOMP_parallel
+||----------------------------------------------------------------------------
+||   6.5% |  3,796.0 |       -- |     -- | pe.17
+||   0.0% |      0.0 |       -- |     -- | pe.26
+||============================================================================
+|   5.3% |  3,087.0 |    166.2 |   5.6% | t3fv_8
+||----------------------------------------------------------------------------
+||   5.3% |  3,087.0 |       -- |     -- | pe.18
+||   4.7% |  2,746.0 |       -- |     -- | pe.17
+||============================================================================
+|   5.0% |  2,968.0 |    146.4 |   5.1% | t1fv_3
+||----------------------------------------------------------------------------
+||   5.0% |  2,968.0 |       -- |     -- | pe.26
+||   4.6% |  2,698.0 |       -- |     -- | pe.25
+||============================================================================
+|   5.0% |  2,924.0 |    106.8 |   3.8% | __fast_MOD_zero_c3._omp_fn.0
+||----------------------------------------------------------------------------
+||   5.0% |  2,924.0 |       -- |     -- | pe.10
+||   4.6% |  2,706.0 |       -- |     -- | pe.20
+||============================================================================
+|   4.8% |  2,816.0 |    534.2 |  19.6% | mpi_waitall
+||----------------------------------------------------------------------------
+||   4.8% |  2,816.0 |       -- |     -- | pe.15
+||   3.0% |  1,776.0 |       -- |     -- | pe.10
+||============================================================================
+|   4.2% |  2,481.0 |    130.4 |   5.4% | __pw_methods_MOD_pw_copy._omp_fn.46
+||----------------------------------------------------------------------------
+||   4.2% |  2,481.0 |       -- |     -- | pe.18
+||   3.8% |  2,259.0 |       -- |     -- | pe.27
+||============================================================================
+|   4.1% |  2,406.0 |    337.3 |  14.5% | __pw_spline_utils_MOD_find_coeffs
+||----------------------------------------------------------------------------
+||   4.1% |  2,406.0 |       -- |     -- | pe.14
+||   2.8% |  1,651.0 |       -- |     -- | pe.24
+||============================================================================
+|   3.2% |  1,894.0 |    151.1 |   8.2% | __pw_methods_MOD_pw_derive._omp_fn.38
+||----------------------------------------------------------------------------
+||   3.2% |  1,894.0 |       -- |     -- | pe.14
+||   2.7% |  1,609.0 |       -- |     -- | pe.12
+||============================================================================
+|   3.2% |  1,853.0 |    205.2 |  11.4% | __fast_MOD_copy_cr._omp_fn.3
+||----------------------------------------------------------------------------
+||   3.2% |  1,853.0 |       -- |     -- | pe.26
+||   2.6% |  1,504.0 |       -- |     -- | pe.21
+||============================================================================
+|   3.0% |  1,773.0 |    363.2 |  21.1% | t1fuv_6
+||----------------------------------------------------------------------------
+||   3.0% |  1,773.0 |       -- |     -- | pe.11
+||   1.5% |    871.0 |       -- |     -- | pe.2
+||============================================================================
+|   2.7% |  1,585.0 |    104.9 |   6.8% | __pw_methods_MOD_pw_axpy._omp_fn.3
+||----------------------------------------------------------------------------
+||   2.7% |  1,585.0 |       -- |     -- | pe.17
+||   2.3% |  1,360.0 |       -- |     -- | pe.22
+||============================================================================
+|   2.7% |  1,577.0 |    158.4 |  10.4% | __pw_poisson_methods_MOD_pw_poisson_solve
+||----------------------------------------------------------------------------
+||   2.7% |  1,577.0 |       -- |     -- | pe.27
+||   1.6% |    918.0 |       -- |     -- | pe.10
+||============================================================================
+|   2.4% |  1,387.0 |     58.9 |   4.4% | __realspace_grid_types_MOD_rs_grid_zero._omp_fn.1
+||----------------------------------------------------------------------------
+||   2.4% |  1,387.0 |       -- |     -- | pe.15
+||   2.1% |  1,237.0 |       -- |     -- | pe.10
+||============================================================================
+|   2.3% |  1,323.0 |     61.4 |   4.8% | gotoblas_zscal_k_sandybridge
+||----------------------------------------------------------------------------
+||   2.3% |  1,323.0 |       -- |     -- | pe.6
+||   2.1% |  1,214.0 |       -- |     -- | pe.17
+||============================================================================
+|   1.6% |    960.0 |    669.4 |  72.0% | __xc_lyp_MOD_lyp_lda_eval._omp_fn.1
+||----------------------------------------------------------------------------
+||   1.6% |    960.0 |       -- |     -- | pe.16
+||   0.2% |    144.0 |       -- |     -- | pe.3
+||============================================================================
+|   1.5% |    909.0 |     60.0 |   6.8% | __pw_methods_MOD_pw_derive._omp_fn.32
+||----------------------------------------------------------------------------
+||   1.5% |    909.0 |       -- |     -- | pe.12
+||   1.3% |    766.0 |       -- |     -- | pe.14
+||============================================================================
+|   1.5% |    894.0 |     35.8 |   4.1% | __pw_methods_MOD_pw_derive._omp_fn.34
+||----------------------------------------------------------------------------
+||   1.5% |    894.0 |       -- |     -- | pe.16
+||   1.4% |    815.0 |       -- |     -- | pe.1
+||============================================================================
+|   1.5% |    880.0 |    614.3 |  72.1% | __xc_xbecke88_MOD_xb88_lda_eval._omp_fn.1
+||----------------------------------------------------------------------------
+||   1.5% |    880.0 |       -- |     -- | pe.16
+||   0.2% |    128.0 |       -- |     -- | pe.27
+||============================================================================
+|   1.5% |    878.0 |     22.1 |   2.6% | __pw_methods_MOD_pw_derive._omp_fn.36
+||----------------------------------------------------------------------------
+||   1.5% |    878.0 |       -- |     -- | pe.30
+||   1.4% |    833.0 |       -- |     -- | pe.31
+||============================================================================
+|   1.3% |    766.0 |     77.2 |  10.4% | __realspace_grid_types_MOD_rs_pw_transfer_distributed
+||----------------------------------------------------------------------------
+||   1.3% |    766.0 |       -- |     -- | pe.22
+||   1.1% |    628.0 |       -- |     -- | pe.5
+||============================================================================
+|   1.1% |    670.0 |     27.8 |   4.3% | integrate_gf_npbc_
+||----------------------------------------------------------------------------
+||   1.1% |    670.0 |       -- |     -- | pe.27
+||   1.1% |    621.0 |       -- |     -- | pe.9
+||============================================================================
+|   1.1% |    660.0 |     20.4 |   3.2% | collocate_gf_npbc_
+||----------------------------------------------------------------------------
+||   1.1% |    660.0 |       -- |     -- | pe.24
+||   1.1% |    621.0 |       -- |     -- | pe.19
+||============================================================================
+|   1.1% |    660.0 |     61.6 |   9.6% | __xc_rho_set_types_MOD_xc_rho_set_update._omp_fn.1
+||----------------------------------------------------------------------------
+||   1.1% |    660.0 |       -- |     -- | pe.26
+||   0.9% |    551.0 |       -- |     -- | pe.1
+||============================================================================
+|   1.1% |    642.0 |     44.2 |   7.1% | __pw_methods_MOD_pw_copy
+||----------------------------------------------------------------------------
+||   1.1% |    642.0 |       -- |     -- | pe.4
+||   0.9% |    527.0 |       -- |     -- | pe.30
+||============================================================================
+|   1.1% |    622.0 |     74.9 |  12.4% | apply_dit
+||----------------------------------------------------------------------------
+||   1.1% |    622.0 |       -- |     -- | pe.23
+||   0.8% |    482.0 |       -- |     -- | pe.10
+||============================================================================
+|   1.0% |    612.0 |     54.6 |   9.2% | __xc_MOD_xc_vxc_pw_create._omp_fn.39
+||----------------------------------------------------------------------------
+||   1.0% |    612.0 |       -- |     -- | pe.0
+||   0.8% |    481.0 |       -- |     -- | pe.17
+|=============================================================================
+
+===================  Observations and suggestions  ===================
+
+MPI Grid Detection:
+
+    There appears to be point-to-point MPI communication in a 8 X 2 X 2
+    grid pattern. The 17.6% of the total execution time spent in MPI
+    functions might be reduced with a rank order that maximizes
+    communication between ranks on the same node. The effect of several
+    rank orders is estimated below.
+
+    No custom rank order was found that is better than the SMP order.
+
+    Rank Order    On-Node    On-Node  MPICH_RANK_REORDER_METHOD
+                 Bytes/PE  Bytes/PE%  
+                            of Total  
+                            Bytes/PE  
+
+           SMP  9.665e+11     34.55%  1
+          Fold  3.744e+11     13.38%  2
+    RoundRobin  2.549e+11      9.11%  0
+
+
+Metric-Based Rank Order:
+
+    No rank order was suggested based on the USER Samp metric because
+    that metric was already well balanced across the nodes.
+
+=========================  End Observations  =========================
+
+Notes for table 3:
+
+  Table option:
+    -O samp_profile+src
+  Options implied by table option:
+    -d sa%@0.95,sa,imb_sa,imb_sa% -b gr,fu,so,li,pe=HIDE
+
+  Options for related tables:
+    -O samp_profile            -O profile_max         
+
+  The Total value for Samp is the sum of the Group values.
+  The Group value for Samp is the sum of the Function values.
+  The Function value for Samp is the sum of the Source values.
+  The Source value for Samp is the sum of the Line values.
+  The Line value for Samp is the avg of the PE values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only lines with Samp% > 0.95.
+    (To set thresholds to zero, specify:  -T)
+
+  Imbalance percentages are relative to a set of threads or PEs.
+  Other percentages at each level are of the Total for the program.
+    (For percentages relative to next level up, specify:
+      -s percent=r[elative])
+
+  To make the profile easier to interpret, some samples are attributed
+  to a caller that is either a user defined function, or a library
+  function called directly by a user defined function.  To disable this
+  adjustment, and show functions actually sampled, use the -P option.
+  
+  The following groups were pruned due to thresholding:
+    IO, HEAP, PTHREAD, OMP, MATH, STDIO, BLAS, BLACS, SCALAPACK, FFTW,
+    PBLAS, STRING
+
+Table 3:  Profile by Group, Function, and Line
+
+  Samp% |      Samp |     Imb. |  Imb. | Group
+        |           |     Samp | Samp% |  Function
+        |           |          |       |   Source
+        |           |          |       |    Line
+        |           |          |       |     PE=HIDE
+       
+ 100.0% | 333,293.8 |       -- |    -- | Total
+|-----------------------------------------------------------------------------
+|  60.1% | 200,231.4 |       -- |    -- | USER
+||----------------------------------------------------------------------------
+||  12.3% |  41,001.8 |       -- |    -- | __pw_spline_utils_MOD_pw_nn_compose_r_no_pbc._omp_fn.0
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_spline_utils.F
+||||--------------------------------------------------------------------------
+4|||   1.3% |   4,343.7 |    146.3 |  3.4% | line.705
+4|||   2.9% |   9,531.0 |    231.0 |  2.4% | line.710
+4|||   3.3% |  10,874.7 |    233.3 |  2.2% | line.715
+||||==========================================================================
+||   7.2% |  23,950.5 |       -- |    -- | __pw_methods_MOD_pw_integral_ab
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_methods.F
+4|   6.9% |  22,939.2 |  1,033.8 |  4.5% |   line.1742
+||   4.6% |  15,482.4 |       -- |    -- | __pw_methods_MOD_pw_gather_p._omp_fn.22
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_methods.F
+4|   4.3% |  14,203.5 |    133.5 |  1.0% |   line.1021
+||   4.3% |  14,231.6 |       -- |    -- | __pw_methods_MOD_pw_scatter_p._omp_fn.24
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_methods.F
+4|   3.6% |  11,990.5 |    240.5 |  2.0% |   line.1211
+||   4.0% |  13,271.8 |       -- |    -- | __qmmm_gpw_energy_MOD_qmmm_elec_with_gaussian_lr
+3|        |           |          |       |  BioExcel2/cp2k-6.1.0/src/qmmm_gpw_energy.F
+4|   1.9% |   6,189.8 |    149.2 |  2.4% |   line.833
+||   3.3% |  11,150.3 |       -- |    -- | __qmmm_gpw_forces_MOD_qmmm_force_with_gaussian_low
+3|        |           |          |       |  BioExcel2/cp2k-6.1.0/src/qmmm_gpw_forces.F
+4|   1.9% |   6,394.6 |    101.4 |  1.6% |   line.1296
+||   2.5% |   8,465.9 |       -- |    -- | __fft_tools_MOD_x_to_yz._omp_fn.14
+3|        |           |          |       |  cp2k-6.1.0/src/pw/fft_tools.F
+4|   2.4% |   7,976.7 |    767.3 |  9.1% |   line.1471
+||   2.1% |   7,122.4 |    162.6 |  2.3% | __fast_MOD_zero_c2._omp_fn.1
+3|        |           |          |       |  obj/ARCHER_craypat/psmp/fast.F90
+4|        |           |          |       |   line.168
+||   2.0% |   6,682.2 |       -- |    -- | __kahan_sum_MOD_kahan_sum_d3
+3|        |           |          |       |  obj/ARCHER_craypat/psmp/kahan_sum.F90
+4|   1.8% |   6,116.4 |    241.6 |  3.9% |   line.534
+||   1.8% |   6,049.3 |       -- |    -- | __fft_tools_MOD_yz_to_x._omp_fn.9
+3|        |           |          |       |  cp2k-6.1.0/src/pw/fft_tools.F
+4|   1.8% |   6,028.9 |    302.1 |  4.9% |   line.1551
+||   1.7% |   5,571.0 |       -- |    -- | __pw_spline_utils_MOD_add_fine2coarse
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_spline_utils.F
+||   1.6% |   5,431.3 |       -- |    -- | __pw_methods_MOD_pw_zero
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_methods.F
+4|   1.6% |   5,181.5 |    187.5 |  3.6% |   line.103
+||   1.6% |   5,205.2 |       -- |    -- | __pw_spline_utils_MOD_add_coarse2fine
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_spline_utils.F
+||   1.3% |   4,305.6 |       -- |    -- | __pw_methods_MOD_pw_axpy
+3|        |           |          |       |  cp2k-6.1.0/src/pw/pw_methods.F
+4|   1.1% |   3,759.0 |    385.0 |  9.6% |   line.741
+||============================================================================
+|  21.2% |  70,574.3 |       -- |    -- | ETC
+||----------------------------------------------------------------------------
+||   8.0% |  26,728.9 | 23,760.1 | 48.6% | apply
+||   6.5% |  21,646.2 |       -- |    -- | _int_malloc
+3|        |           |          |       |  BUILD/glibc-2.11.3/malloc/malloc.c
+4|   4.3% |  14,386.6 | 43,800.4 | 77.7% |   line.4731
+||   1.4% |   4,752.2 |  4,685.8 | 51.3% | apply_extra_iter
+||   1.1% |   3,610.7 |       -- |    -- | _gfortran_string_len_trim
+3|        |           |          |       |  cray-gcc-6.3.0-201701050407.93fe37becc347/libgfortran/intrinsics/string_intrinsics_inc.c
+||============================================================================
+|  17.6% |  58,808.1 |       -- |    -- | MPI
+||----------------------------------------------------------------------------
+||  10.3% |  34,246.8 |  3,237.2 |  8.9% | mpi_alltoallv
+||   5.4% |  17,891.8 |  2,339.2 | 11.9% | MPI_ALLREDUCE
+||   1.0% |   3,424.9 |    406.1 | 10.9% | MPI_WAITANY
+||============================================================================
+|   1.0% |   3,418.7 |       -- |    -- | RT
+||----------------------------------------------------------------------------
+||   1.0% |   3,413.6 |       -- |    -- | munmap
+3|        |           |          |       |  ../sysdeps/unix/syscall-template.S
+4|   1.0% |   3,413.3 |    985.7 | 23.1% |   line.82
+|=============================================================================
+
+Notes for table 4:
+
+  Table option:
+    -O hwpc
+  Options implied by table option:
+    -d P -b pe=HIDE -s show_data=rows
+
+  The Total value for each data item is the avg of the PE values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  
+  Percent of peak FP Ops based on a compute unit.
+  
+  Collection of each of the following performance counters was
+  attempted, but all of the values recorded in the data file were zero,
+  so the counter and all derived counters that depend on it were filtered
+  from this table:
+    FP_COMP_OPS_EXE:SSE_PACKED_SINGLE
+    SIMD_FP_256:PACKED_SINGLE
+
+Table 4:  Program HW Performance Counter Data
+
+PE=HIDE
+
+  
+==============================================================================
+  Avg of PE values
+------------------------------------------------------------------------------
+  CPU_CLK_UNHALTED:THREAD_P                       10,497,381,597,451 
+  CPU_CLK_UNHALTED:REF_P                             309,262,044,637 
+  DTLB_LOAD_MISSES:MISS_CAUSES_A_WALK                 21,587,278,470 
+  DTLB_STORE_MISSES:MISS_CAUSES_A_WALK                15,673,819,001 
+  L1D:REPLACEMENT                                    307,112,249,609 
+  L2_RQSTS:ALL_DEMAND_DATA_RD                        200,947,393,441 
+  L2_RQSTS:DEMAND_DATA_RD_HIT                        119,314,243,809 
+  FP_COMP_OPS_EXE:SSE_SCALAR_DOUBLE                3,321,863,899,693 
+  FP_COMP_OPS_EXE:SSE_FP_SCALAR_SINGLE                   245,998,337 
+  FP_COMP_OPS_EXE:X87                                170,567,235,327 
+  FP_COMP_OPS_EXE:SSE_FP_PACKED_DOUBLE                28,934,477,201 
+  SIMD_FP_256:PACKED_DOUBLE                          517,262,830,301 
+  PM_ENERGY:NODE                   43.091 /sec               144,042 J
+  CPU_CLK                            3.39GHz                         
+  HW FP Ops / User time         1,681.141M/sec     5,619,597,408,964 ops  6.7%peak(DP)
+  Total SP ops                      0.074M/sec           245,998,337 ops
+  Total DP ops                  1,681.068M/sec     5,619,351,410,628 ops
+  MFLOPS (aggregate)            53,796.52M/sec                       
+  D2 cache hit,miss ratio           73.4% hits                 26.6% misses
+  D2 to D1 bandwidth            3,669.116MiB/sec  12,860,633,180,194 bytes
+==============================================================================
+
+Notes for table 5:
+
+  Table option:
+    -O program_energy
+  Options implied by table option:
+    -d PM_ENERGY:NODE,Pn,PM_ENERGY:ACC,Pa -b ni=[mmm],pe.th=HIDE -s
+    aggr_ni_PM_ENERGY:ACC=sum -s aggr_ni_PM_ENERGY:NODE=sum -s
+    aggr_pe.th_PM_ENERGY:ACC=max -s aggr_pe.th_PM_ENERGY:NODE=max
+
+  The Total value for PM_ENERGY:NODE is the sum of the Node Id values.
+  The Node Id value for PM_ENERGY:NODE is the max of the PE.Thread values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  This table shows only the maximum, median, minimum Node Id entries,
+    sorted by PM_ENERGY:NODE.
+
+Table 5:
+  Program energy and power usage (from Cray PM) (limited entries shown)
+
+ PM_ENERGY |     Power | Node Id=[mmm]
+ :NODE (J) | :node (W) |  PE.Thread=HIDE
+          
+ 4,609,359 | 1,377.248 | Total
+|---------------------------------------
+|   597,178 |   178.444 | nid.1546
+|   575,162 |   171.861 | nid.1716
+|   558,730 |   166.953 | nid.966
+|=======================================
+
+Notes for table 6:
+
+  Table option:
+    -O himem
+  Options implied by table option:
+    -d hm,Hm -b nn,pe=HIDE -s sort_by_nn=yes
+
+  The Total value for each data item is the sum of the Numanode values.
+  The Numanode value for each data item is the avg of the PE values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  The value shown for Process HiMem is calculated from information in
+  the /proc/self/numa_maps files captured near the end of the program. 
+  It is the total size of all pages, including huge pages, that were
+  actually mapped into physical memory from both private and shared
+  memory segments.
+
+
+Table 6:  Memory High Water Mark by Numa Node
+
+  Process |    HiMem |    HiMem | Numanode
+    HiMem |     Numa |     Numa |  PE=HIDE
+ (MBytes) |   Node 0 |   Node 1 | 
+          | (MBytes) | (MBytes) | 
+         
+    811.2 |    422.7 |    388.4 | Total
+|-------------------------------------------
+|    406.1 |    405.5 |      0.6 | numanode.0
+|    405.1 |     17.3 |    387.8 | numanode.1
+|===========================================
+
+Notes for table 7:
+
+  Table option:
+    -O program_time
+  Options implied by table option:
+    -d pt,hm -b pe=[mmm]
+
+  The Total value for Process HiMem (MBytes), Process Time is the avg of the PE values.
+    (To specify different aggregations, see: pat_help report options s1)
+
+  The value shown for Process HiMem is calculated from information in
+  the /proc/self/numa_maps files captured near the end of the program. 
+  It is the total size of all pages, including huge pages, that were
+  actually mapped into physical memory from both private and shared
+  memory segments.
+
+  This table shows only the maximum, median, minimum PE entries,
+    sorted by Process Time.
+
+Table 7:  Wall Clock Time, Memory High Water Mark (limited entries shown)
+
+ Process Time |  Process | PE=[mmm]
+              |    HiMem | 
+              | (MBytes) | 
+             
+ 3,346.789888 |    405.6 | Avg of PE values
+|------------------------------------------
+| 3,348.271231 |    361.6 | pe.0
+| 3,346.769968 |    356.8 | pe.9
+| 3,345.500961 |    466.4 | pe.22
+|==========================================
+
+========================  Additional details  ========================
+
+Experiment:  samp_cs_time
+
+Sampling interval:  10000 microsecs
+
+Original path to data file:
+  /fs3/d118/d118/fionabio/BioExcel2/cp2k_benchmarks/QMMM/QM/8_nodes/test-1/cp2k.psmp+samp+23753-965s.xf  (RTS)
+
+Original program:
+  /home3/d118/d118/fionabio/BioExcel2/cp2k-6.1.0/exe/ARCHER_craypat/cp2k.psmp
+
+Instrumented with:  pat_build -o cp2k.psmp+samp cp2k.psmp
+
+  Option file "apa" contained:
+    -Drtenv=PAT_RT_PERFCTR=default_samp
+    -Drtenv=PAT_RT_EXPERIMENT=samp_cs_time
+    -Drtenv=PAT_RT_SAMPLING_MODE=3
+    -g upc
+    -g caf
+    -g mpi
+    -g shmem
+    -g syscall
+
+Instrumented program:
+  /home/d118/d118/fionabio/BioExcel2/cp2k-6.1.0/exe/ARCHER_craypat/cp2k.psmp+samp
+
+Program invocation:
+  /home/d118/d118/fionabio/BioExcel2/cp2k-6.1.0/exe/ARCHER_craypat/cp2k.psmp+samp fr_qmmm_40steps.inp
+
+Exit Status:  0 for 32 PEs
+
+Memory pagesize:  4 KiB
+
+Memory hugepagesize:  Not Available
+
+Programming environment:  GNU
+
+Runtime environment variables:
+  ATP_HOME=/opt/cray/atp/2.1.0
+  ATP_IGNORE_SIGTERM=1
+  ATP_MRNET_COMM_PATH=/opt/cray/atp/2.1.0/libexec/atp_mrnet_commnode_wrapper
+  ATP_POST_LINK_OPTS=-Wl,-L/opt/cray/atp/2.1.0/libApp/ 
+  CRAYOS_VERSION=5.2.82
+  CRAYPE_VERSION=2.5.10
+  CRAY_FFTW_VERSION=3.3.6.3
+  CRAY_LIBSCI_VERSION=16.11.1
+  DVS_VERSION=0.9.0
+  FFTW_VERSION=3.3.6.3
+  GCC_VERSION=6.3.0
+  GNU_VERSION=6.3.0
+  LIBSCI_VERSION=16.11.1
+  MODULE_VERSION=3.2.10.6
+  MODULE_VERSION_STACK=3.2.10.6
+  MPICH_ABORT_ON_ERROR=1
+  MPICH_DIR=/opt/cray/mpt/7.5.5/gni/mpich-gnu/5.1
+  OMP_NUM_THREADS=1
+  OMP_STACKSIZE=50M
+  PATH=/opt/cray/perftools/6.4.6/bin:/opt/cray/papi/5.5.1.1/bin:/opt/cray/rca/1.0.0-2.0502.60530.1.62.ari/bin:/opt/cray/fftw/3.3.6.3/ivybridge/bin:/opt/gcc/6.3.0/bin:/opt/cray/llm/default/bin:/opt/cray/llm/default/etc:/opt/cray/xpmem/0.1-2.0502.64982.7.26.ari/bin:/opt/cray/lustre-cray_ari_s/2.5_3.0.101_0.46.1_1.0502.8871.43.1-1.0502.21728.74.6/sbin:/opt/cray/lustre-cray_ari_s/2.5_3.0.101_0.46.1_1.0502.8871.43.1-1.0502.21728.74.6/bin:/opt/cray/alps/5.2.5-2.0502.9955.44.1.ari/sbin:/opt/cray/alps/5.2.5-2.0502.9955.44.1.ari/bin:/opt/cray/sdb/1.1-1.0502.63652.4.25.ari/bin:/opt/cray/nodestat/2.2-1.0502.60539.1.31.ari/bin:/home/y07/y07/cse/epcc-archer-tools/bin:/home/y07/y07/cse/git/git-2.16.2_build1/install/bin:/home/y07/y07/cse/curl/curl-7.58.0_build1/install/bin:/home/y07/y07/cse/openssl/openssl-1.1.0g_build1/install/bin:/home/y07/y07/cse/xalt/0.6.0/libexec:/home/y07/y07/cse/xalt/0.6.0/bin:/usr/local/packages/cse/ack:/usr/local/packages/cse/quickstart/1.0:/home/y07/y07/cse/leave_time/1.3.0:/home/y07/y07/cse/nano/2.2.6/bin:/usr/local/packages/cse/bolt/0.6/bin:/opt/cray/mpt/7.5.5/gni/bin:/opt/pbs/12.2.401.141761/bin:/opt/cray/alps/5.2.4-2.0502.9774.31.11.ari/sbin:/opt/cray/dvs/2.5_0.9.0-1.0502.2188.1.116.ari/bin:/opt/cray/xpmem/0.1-2.0502.64982.5.3.ari/bin:/opt/cray/ugni/6.0-1.0502.10863.8.29.ari/bin:/opt/cray/udreg/2.3.2-1.0502.10518.2.17.ari/bin:/opt/cray/craype/2.5.10/bin:/opt/cray/switch/1.0-1.0502.60522.1.61.ari/bin:/opt/cray/eslogin/eswrap/1.3.3-1.020200.1280.0/bin:/opt/modules/3.2.10.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/usr/sbin:.:/usr/lib/qt3/bin:/opt/cray/bin
+  PAT_BUILD_PAPI_BASEDIR=/opt/cray/papi/5.5.1.1
+  PAT_REPORT_PRUNE_NAME=_cray$mt_start_,__cray_hwpc_,f_cray_hwpc_,cstart,__pat_,pat_region_,PAT_,OMP.slave_loop,slave_entry,_new_slave_entry,THREAD_POOL_join,__libc_start_main,_start,__start,start_thread,__wrap_,UPC_ADIO_,_upc_,upc_,__caf_,__pgas_,syscall
+  PAT_RT_EXPERIMENT=samp_cs_time
+  PAT_RT_PERFCTR=default_samp
+  PAT_RT_SAMPLING_MODE=3
+  PERFTOOLS_VERSION=6.4.6
+  PMI_FORK_RANK=0
+  PMI_GNI_COOKIE=2710175744:2710241280
+  PMI_GNI_DEV_ID=0
+  PMI_GNI_LOC_ADDR=1221:1221
+  PMI_GNI_PTAG=38:39
+  XTOS_VERSION=5.2.82
+
+Report time environment variables:
+    CRAYPAT_ROOT=/opt/cray/perftools/6.4.6
+    PAT_REPORT_PRUNE_NAME=_cray$mt_start_,__cray_hwpc_,f_cray_hwpc_,cstart,__pat_,pat_region_,PAT_,OMP.slave_loop,slave_entry,_new_slave_entry,THREAD_POOL_join,__libc_start_main,_start,__start,start_thread,__wrap_,UPC_ADIO_,_upc_,upc_,__caf_,__pgas_,syscall
+
+Number of MPI control variables collected:  104
+
+  (To see the list, specify: -s mpi_cvar=show)
+
+Report command line options:
+  -o craypat_qm_8_nodes_32_mpiprocs_1_threads_40_steps.txt
+
+Operating system:
+  Linux 3.0.101-0.46.1_1.0502.8871-cray_ari_c #1 SMP Mon Oct 8 17:27:42 UTC 2018
+
+Hardware performance counter events:
+   CPU_CLK_UNHALTED:THREAD_P             Cycles when processor is not in halted state:Cycles when thread is not halted
+   CPU_CLK_UNHALTED:REF_P                Cycles when processor is not in halted state:Cycles when the core is unhalted (count at 100 Mhz)
+   DTLB_LOAD_MISSES:MISS_CAUSES_A_WALK   Data TLB load misses:Demand load miss in all TLB levels which causes a page walk of anypage size
+   DTLB_STORE_MISSES:MISS_CAUSES_A_WALK  Data TLB store misses:Miss in all TLB levels that causes a page walk of any page size (4K/2M/4M/1G)
+   L1D:REPLACEMENT                       L1D cache:Number of cache lines brought into the L1D cache
+   L2_RQSTS:ALL_DEMAND_DATA_RD           L2 requests:Demand  data read requests to L2 cache
+   L2_RQSTS:DEMAND_DATA_RD_HIT           L2 requests:Demand data read requests that hit L2
+   FP_COMP_OPS_EXE:SSE_SCALAR_DOUBLE     Counts number of floating point events:Number of SSE or AVX-128 double precision FP scalar uops executed
+   FP_COMP_OPS_EXE:SSE_FP_SCALAR_SINGLE  Counts number of floating point events:Number of SSE or AVX-128 single precision FP scalar uops executed
+   FP_COMP_OPS_EXE:X87                   Counts number of floating point events:Number of X87 uops executed
+   FP_COMP_OPS_EXE:SSE_PACKED_SINGLE     Counts number of floating point events:Number of SSE or AVX-128 single precision FP packed uops executed
+   FP_COMP_OPS_EXE:SSE_FP_PACKED_DOUBLE  Counts number of floating point events:Number of SSE or AVX-128 double precision FP packed uops executed
+   SIMD_FP_256:PACKED_SINGLE             Counts 256-bit packed floating point instructions:Counts 256-bit packed single-precision
+   SIMD_FP_256:PACKED_DOUBLE             Counts 256-bit packed floating point instructions:Counts 256-bit packed double-precision
+   PM_ENERGY:NODE                        Compute node accumulated energy
+
+  This set of HWPC events requires multiplexing, which reduces
+  the accuracy of the data collected. If the best possible
+  accuracy is needed, you should rerun to collect data for
+  smaller sets of events, that do not require multiplexing.
+
+Number of traced functions:  355
+
+  (To see the list, specify:  -s traced_functions=show)
+
