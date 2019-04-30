@@ -1,1 +1,17 @@
-A directory to contain the benchmark results from the QM/MM test cases
+This directory contains the benchmark results from the QM/MM test cases
+
+The Excel spreadsheet contains the processed results from the raw data where the best runtime from 3 runs 
+for each configuration was used. 
+
+The spreadsheet also contains an estimate of the number of steps needs to keep startup 
+costs below 5% of the total runtime and some experiments re. performance with and without LSD. 
+
+The get_qmmm_timings.sh script can be used to extract the "best" result and start-up cost for each configuration
+tested. The script generates a csv type file with name = [QM/MM]-test-[1/2/3/4].txt containing 10 columns containing: 
+Nodes cores  CP2K runtime in seconds (on 1,2,4 and 6 threads, CP2K Startup time in seconds (on 1,2,4 & 6 threads). 
+The .txt files for the largest and smallest QM and MM tests are included - the same data is also in the Excel 
+spreadsheet. 
+
+The raw_output/ directory contains all the results from multiple runs of the benchmarks on 
+different numbers of nodes on ARCHER along with some testing of runs with and without LSD enabled. 
+
