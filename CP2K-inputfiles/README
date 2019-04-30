@@ -22,6 +22,9 @@ test-3: 112498 atoms
 Inputfiles have been updated such that all run with 5 time steps and LSD is disabled for all tests. The original 
 inputfiles (if applicable) can be found in the orig/ directory with a README describing any changes made. 
 
+The input files for the QM scaling tests can be found in the tarball Scale-QM.tgz and for the the MM scaling tests in
+the tarball Scale-MM.tgz. Output as obtained on the JYU SISU system is also included inside these tarballs
+
 
 
 
