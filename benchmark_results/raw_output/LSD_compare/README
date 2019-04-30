@@ -1,0 +1,8 @@
+Comparison of LSD versus !LSD (i.e. not turned on) for QM and MM on 192 procs, 8 nodes of ARCHER. 
+
+Run in pure MPI mode with OpenMP thread = 1. 
+
+With the exception of MM/test-1 all the ener files match with those that Vaibhav supplied. 
+Having re-done test-1 MM multiple times it seems that Vaibhav's file may have an issue and thus we proceed with our own on the assumption all is well 
+
+All tests for scaling/profiling etc will be done with LSD turned off, i.e ! LSD in the input files
