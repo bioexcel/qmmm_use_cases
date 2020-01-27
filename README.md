@@ -1,2 +1,2 @@
 # qmmm_use_cases
-This internal (but public) repository will share QM/MM content from WP1 and WP3. This could include text descriptions of use cases, corresponding CP2K inputs, notes on building CP2K, data from benchmarking or profiling, etc.
+This repository contains CP2K inputs and benchmarking/profiling results for QM-MM simulations of Green Fluorescent Protein (GFP) test cases reported on in BioExcel deliverable D1.1 - Specification of software engineering and QA. Build notes and CP2K arch files are also included. 
